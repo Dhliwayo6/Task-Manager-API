@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.example.taskmanager.model;
 
 import jakarta.persistence.*;
 
@@ -12,10 +12,10 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "username", nullable = false, unique = true)
+    @Column(name = "username", nullable = false)
     private String username;
 
-    @Column(name = "to_do_list", nullable = false, length = 255)
+    @Column(name = "toDoList", nullable = false, length = 255)
     private String toDoList;
 
     @Column(name = "date_created", nullable = false)
@@ -28,11 +28,11 @@ public class Task {
         this.dateCreated = LocalDate.now();
     }
 
-    public Task(Long id, String username, String toDoList, LocalDate dateCreated, String comments) {
+    public Task(Long id, String username, String toDoList, String comments) {
         this.id = id;
         this.username = username;
         this.toDoList = toDoList;
-        this.dateCreated = dateCreated;
+        this.dateCreated = LocalDate.now();
         this.comments = comments;
     }
 

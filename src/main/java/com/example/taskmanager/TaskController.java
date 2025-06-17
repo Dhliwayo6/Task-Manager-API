@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/v1/tasked")
+@RequestMapping(path = "api/v1/taskmanager")
 public class TaskController {
 
     private final TaskService taskService;
@@ -18,12 +18,12 @@ public class TaskController {
         this.taskService = taskService;
     }
 
-    @GetMapping
+    @GetMapping("/")
     public List<Task> getTasks() {
         return this.taskService.getTasks();
     }
 
-    @PostMapping
+    @PostMapping("tasks")
     public void newTask(@RequestBody Task task) {
         taskService.addNewTask(task);
     }
