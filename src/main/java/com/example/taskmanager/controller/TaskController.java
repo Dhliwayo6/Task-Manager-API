@@ -1,7 +1,8 @@
-package com.example.demo;
+package com.example.taskmanager;
 
+import com.example.taskmanager.model.Task;
+import com.example.taskmanager.services.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
