@@ -1,5 +1,6 @@
-package com.example.taskmanager;
+package com.example.taskmanager.services;
 
+import com.example.taskmanager.repository.TaskRepository;
 import com.example.taskmanager.model.Task;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,15 +37,15 @@ public class TaskService {
         Task task = taskRepository.findById(taskId)
                 .orElseThrow(() -> new IllegalStateException("Task with id " + taskId + "does not exist"));
 
-        if (username != null && username.length() > 0 && !Objects.equals(task.getUsername(), username)) {
-            task.setUsername(username);
-        }
+//        if (username != null && username.length() > 0 && !Objects.equals(task.getUsername(), username)) {
+//            task.setUsername(username);
+//        }
 
-        if (toDoList != null && toDoList.length() > 0 && !Objects.equals(task.getToDoList(), toDoList)) {
+        if (toDoList != null && !toDoList.isEmpty() && !Objects.equals(task.getToDoList(), toDoList)) {
             task.setToDoList(toDoList);
         }
 
-        if (comments != null && comments.length() > 0 && !Objects.equals(task.getComments(), comments)) {
+        if (comments != null && !comments.isEmpty() && !Objects.equals(task.getComments(), comments)) {
             task.setComments(comments);
         }
     }

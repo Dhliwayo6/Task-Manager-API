@@ -12,8 +12,8 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "username", nullable = false)
-    private String username;
+//    @Column(name = "username", nullable = false)
+//    private String username;
 
     @Column(name = "toDoList", nullable = false, length = 255)
     private String toDoList;
@@ -24,20 +24,24 @@ public class Task {
     @Column(name = "comments", nullable = true)
     private String comments;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
     public Task() {
         this.dateCreated = LocalDate.now();
     }
 
-    public Task(Long id, String username, String toDoList, String comments) {
+    public Task(Long id, User user, String toDoList, String comments) {
         this.id = id;
-        this.username = username;
+        this.user = user;
         this.toDoList = toDoList;
         this.dateCreated = LocalDate.now();
         this.comments = comments;
     }
 
-    public Task(String username, String toDoList, String comments) {
-        this.username = username;
+    public Task(User user, String toDoList, String comments) {
+        this.user = user;
         this.dateCreated = LocalDate.now();
         this.toDoList = toDoList;
         this.comments = comments;
@@ -75,22 +79,22 @@ public class Task {
         this.toDoList= toDoList;
     }
 
-    public String getUsername() {
-        return username;
+    public User getUser() {
+        return user;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    @Override
-    public String toString() {
-        return "Task{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", to_do_list='" + toDoList + '\'' +
-                ", date=" + dateCreated +
-                ", comments='" + comments + '\'' +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Task{" +
+//                "id=" + id +
+//                ", username='" + username + '\'' +
+//                ", to_do_list='" + toDoList + '\'' +
+//                ", date=" + dateCreated +
+//                ", comments='" + comments + '\'' +
+//                '}';
+//    }
 }
