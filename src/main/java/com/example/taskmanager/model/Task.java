@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "tasks")
+@Table(name = "task")
 public class Task {
 
     @Id
@@ -93,16 +93,4 @@ public class Task {
         this.user = user;
     }
 
-
-
-//    @Override
-//    public String toString() {
-//        return "Task{" +
-//                "id=" + id +
-//                ", username='" + username + '\'' +
-//                ", to_do_list='" + toDoList + '\'' +
-//                ", date=" + dateCreated +
-//                ", comments='" + comments + '\'' +
-//                '}';
-//    }
 }

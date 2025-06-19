@@ -16,13 +16,12 @@ public class User {
     @Column(name = "username")
     private String username;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Task> tasks;
+//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Task> tasks;
 
-    public User(Integer id, String username, List<Task> tasks) {
+    public User(Integer id, String username) {
         this.id = id;
         this.username = username;
-        this.tasks = tasks;
     }
 
     public User() {
@@ -44,11 +43,11 @@ public class User {
         this.username = username;
     }
 
-    public List<Task> getTasks() {
-        return tasks;
-    }
-
-    public void setTasks(List<Task> tasks) {
-        this.tasks = tasks;
-    }
+//    public List<Task> getTasks() {
+//        return tasks;
+//    }
+//
+//    public void setTasks(List<Task> tasks) {
+//        this.tasks = tasks;
+//    }
 }
