@@ -1,4 +1,4 @@
-package com.example.taskmanager;
+package com.example.taskmanager.controller;
 
 import com.example.taskmanager.model.Task;
 import com.example.taskmanager.model.TaskDTO;
