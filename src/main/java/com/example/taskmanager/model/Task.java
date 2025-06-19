@@ -10,13 +10,11 @@ public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "id")
+    private Integer id;
 
-//    @Column(name = "username", nullable = false)
-//    private String username;
-
-    @Column(name = "toDoList", nullable = false, length = 255)
-    private String toDoList;
+    @Column(name = "task", nullable = false, length = 255)
+    private String task;
 
     @Column(name = "date_created", nullable = false)
     private LocalDate dateCreated;
@@ -32,26 +30,26 @@ public class Task {
         this.dateCreated = LocalDate.now();
     }
 
-    public Task(Long id, User user, String toDoList, String comments) {
+    public Task(Integer id, User user, String task, String comments) {
         this.id = id;
         this.user = user;
-        this.toDoList = toDoList;
+        this.task = task;
         this.dateCreated = LocalDate.now();
         this.comments = comments;
     }
 
-    public Task(User user, String toDoList, String comments) {
+    public Task(User user, String task, String comments) {
         this.user = user;
         this.dateCreated = LocalDate.now();
-        this.toDoList = toDoList;
+        this.task = task;
         this.comments = comments;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -71,12 +69,20 @@ public class Task {
         this.dateCreated = dateCreated;
     }
 
-    public String getToDoList() {
-        return toDoList;
+    public String getTask() {
+        return task;
     }
 
-    public void setToDoList(String toDoList) {
-        this.toDoList= toDoList;
+    public void setTask(String task) {
+        this.task = task;
+    }
+
+    public LocalDate getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(LocalDate dateCreated) {
+        this.dateCreated = dateCreated;
     }
 
     public User getUser() {
@@ -86,6 +92,8 @@ public class Task {
     public void setUser(User user) {
         this.user = user;
     }
+
+
 
 //    @Override
 //    public String toString() {
