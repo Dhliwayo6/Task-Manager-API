@@ -8,8 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface TaskRepository extends JpaRepository <Task, Long> {
+public interface TaskRepository extends JpaRepository <Task, Integer> {
 
-//    @Query("SELECT u FROM Task u WHERE u.username = ?1")
-//    Optional<Task>findByUsername(String username);
 }

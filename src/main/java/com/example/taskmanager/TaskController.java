@@ -1,45 +1,67 @@
 package com.example.taskmanager;
 
 import com.example.taskmanager.model.Task;
-import com.example.taskmanager.services.TaskService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.taskmanager.model.TaskDTO;
+import com.example.taskmanager.model.UpdateTaskCommand;
+import com.example.taskmanager.services.*;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/v1/taskmanager")
 public class TaskController {
 
-    private final TaskService taskService;
+    private final CreateTaskService createTaskService;
+    private final GetTaskService getTaskService;
+    private final GetTasksService getTasksService;
+    private final UpdateTaskService updateTaskService;
+    private final DeleteTaskService deleteTaskService;
 
-    @Autowired
-    public TaskController(TaskService taskService) {
-        this.taskService = taskService;
+    public TaskController(CreateTaskService createTaskService,
+                          GetTaskService getTaskService,
+                          GetTasksService getTasksService,
+                          UpdateTaskService updateTaskService,
+                          DeleteTaskService deleteTaskService) {
+        this.createTaskService = createTaskService;
+        this.getTaskService = getTaskService;
+        this.getTasksService = getTasksService;
+        this.updateTaskService = updateTaskService;
+        this.deleteTaskService = deleteTaskService;
     }
 
-    @GetMapping("/")
-    public List<Task> getTasks() {
-        return this.taskService.getTasks();
+    @PostMapping("/task")
+    public ResponseEntity<TaskDTO> createProduct(@RequestBody Task task){
+        return createTaskService.execute(task);
     }
 
-    @PostMapping("tasks")
-    public void newTask(@RequestBody Task task) {
-        taskService.addNewTask(task);
+    @GetMapping("tasks")
+    public ResponseEntity<List<TaskDTO>> getProducts(){
+        return getTasksService.execute(null);
     }
 
-    @DeleteMapping(path="{taskId}")
-    public void deleteTask(@PathVariable("taskId") Long taskId) {
-        taskService.deleteTask(taskId);
+    //new get mapping to find by id
+
+    @GetMapping("/task/{id}")
+    public ResponseEntity<TaskDTO> getProductById(@PathVariable Integer id) {
+        return getTaskService.execute(id);
     }
 
-    @PutMapping(path="{taskId}")
-    public void updateTask(@PathVariable("taskId") Long taskId,
-                           @RequestParam(required = false) String username,
-                           @RequestParam(required = false) String toDoList,
-                           @RequestParam(required = false) String comments) {
-        taskService.updateTask(taskId, username, toDoList, comments);
+    //Search functionality request
+
+//    @GetMapping("/task/search")
+//    public ResponseEntity<List<TaskDTO>> searchTaskByName(@RequestParam String name) {
+//        return searchTaskService.execute(name);
+//    }
+
+    @PutMapping("/task/{id}")
+    public ResponseEntity<TaskDTO> updateProduct(@PathVariable Integer id, @RequestBody Task task){
+        return updateTaskService.execute(new UpdateTaskCommand(id, task));
     }
 
-
+    @DeleteMapping("/task/{id}")
+    public ResponseEntity<Void> deleteProduct(@PathVariable Integer id){
+        return deleteTaskService.execute(id);
+    }
 }
+

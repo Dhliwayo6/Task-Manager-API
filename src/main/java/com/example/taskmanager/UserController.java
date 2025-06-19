@@ -1,45 +1,69 @@
 package com.example.taskmanager;
 
-import com.example.taskmanager.model.Task;
+import com.example.taskmanager.model.UpdateUserCommand;
 import com.example.taskmanager.model.User;
-import com.example.taskmanager.services.TaskService;
-import com.example.taskmanager.services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.taskmanager.model.UserDTO;
+import com.example.taskmanager.services.*;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "taskmanager")
 public class UserController {
 
-    private final UserService userService;
+    private final CreateUserService createUserService;
+    private final GetUserService getUserService;
+    private final GetUsersService getUsersService;
+    private final DeleteUserService deleteUserService;
+    private final UpdateUserService updateUserService;
 
-    @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
+
+    public UserController(CreateUserService createUserService,
+                          GetUserService getUserService,
+                          GetUsersService getUsersService,
+                          DeleteUserService deleteUserService,
+                          UpdateUserService updateUserService) {
+        this.createUserService = createUserService;
+        this.getUserService = getUserService;
+        this.getUsersService = getUsersService;
+        this.deleteUserService = deleteUserService;
+        this.updateUserService = updateUserService;
     }
 
-    @GetMapping("/")
-    public List<User> getUsers() {
-        return this.userService.getUsers();
+    @PostMapping("/user")
+    public ResponseEntity<UserDTO> createUser(@RequestBody User user){
+        return createUserService.execute(user);
     }
 
-    @PostMapping("users")
-    public void newTask(@RequestBody User user) {
-        userService.addNewTask(user);
+    @GetMapping("users")
+    public ResponseEntity<List<UserDTO>> getUsers(){
+        return getUsersService.execute(null);
     }
 
-    @DeleteMapping(path="{user_id}")
-    public void deleteTask(@PathVariable("user_id") Long taskId) {
-        userService.deleteTask(taskId);
+    //new get mapping to find by id
+
+    @GetMapping("/user/{id}")
+    public ResponseEntity<UserDTO> getUserById(@PathVariable Integer id) {
+        return getUserService.execute(id);
     }
 
-    @PutMapping(path="{user_id}")
-    public void updateTask(@PathVariable("user_id") Long taskId,
-                           @RequestParam(required = false) String username) {
-        userService.updateUser(taskId, username);
+    //Search functionality request
+
+//    @GetMapping("/user/search")
+//    public ResponseEntity<List<UserDTO>> searchUserByName(@RequestParam String name) {
+//        return searchUserService.execute(name);
+//    }
+
+    @PutMapping("/user/{id}")
+    public ResponseEntity<UserDTO> updateUser(@PathVariable Integer id, @RequestBody User user){
+        return updateUserService.execute(new UpdateUserCommand(id, user));
     }
 
+    @DeleteMapping("/user/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Integer id){
+        return deleteUserService.execute(id);
+    }
 
 }
+
