@@ -4,7 +4,6 @@ import com.example.taskmanager.model.UpdateUserCommand;
 import com.example.taskmanager.model.User;
 import com.example.taskmanager.model.UserDTO;
 import com.example.taskmanager.services.user.*;
-import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -55,10 +54,10 @@ public class UserController {
         return createUserService.execute(user);
     }
 
-    @GetMapping("users")
-    public ResponseEntity<List<UserDTO>> getUsers(){
-        return getUsersService.execute(null);
-    }
+//    @GetMapping("users")
+//    public ResponseEntity<List<UserDTO>> getUsers(){
+//        return getUsersService.execute(null);
+//    }
 
     @GetMapping("/user/{id}")
     public ResponseEntity<UserDTO> getUserById(@PathVariable Integer id) {
