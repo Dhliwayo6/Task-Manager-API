@@ -3,7 +3,7 @@ package com.example.taskmanager.controller;
 import com.example.taskmanager.model.UpdateUserCommand;
 import com.example.taskmanager.model.User;
 import com.example.taskmanager.model.UserDTO;
-import com.example.taskmanager.services.*;
+import com.example.taskmanager.services.user.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

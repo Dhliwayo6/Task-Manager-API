@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
@@ -25,7 +27,7 @@ public class User implements UserDetails {
     @Column(name = "verification_code")
     private String verificationCode;
     @Column(name = "verification_code_expiry")
-    private String verificationExpiry;
+    private LocalDateTime verificationExpiry;
     private boolean enabled;
 
     // For create unverified user
@@ -79,11 +81,11 @@ public class User implements UserDetails {
         this.verificationCode = verificationCode;
     }
 
-    public String getVerificationExpiry() {
+    public LocalDateTime getVerificationExpiry() {
         return verificationExpiry;
     }
 
-    public void setVerificationExpiry(String verificationExpiry) {
+    public void setVerificationExpiry(LocalDateTime verificationExpiry) {
         this.verificationExpiry = verificationExpiry;
     }
 

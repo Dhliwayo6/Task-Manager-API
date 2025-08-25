@@ -1,10 +1,9 @@
-package com.example.taskmanager.services;
+package com.example.taskmanager.services.task;
 
 import com.example.taskmanager.Query;
 import com.example.taskmanager.model.Task;
 import com.example.taskmanager.model.TaskDTO;
 import com.example.taskmanager.repository.TaskRepository;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 

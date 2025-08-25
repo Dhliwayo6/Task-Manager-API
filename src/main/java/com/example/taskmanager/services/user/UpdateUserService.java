@@ -1,4 +1,4 @@
-package com.example.taskmanager.services;
+package com.example.taskmanager.services.user;
 
 import com.example.taskmanager.Command;
 import com.example.taskmanager.model.UpdateUserCommand;
