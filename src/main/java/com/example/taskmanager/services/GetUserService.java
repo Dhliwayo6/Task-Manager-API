@@ -13,7 +13,7 @@ import java.util.Optional;
 @Service
 public class GetUserService implements Query<Integer, UserDTO> {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public GetUserService(UserRepository userRepository) {
         this.userRepository = userRepository;

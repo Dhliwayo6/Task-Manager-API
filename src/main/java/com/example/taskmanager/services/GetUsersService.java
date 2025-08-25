@@ -21,7 +21,7 @@ public class GetUsersService implements Query<Void, List<UserDTO>> {
 
     @Override
     public ResponseEntity<List<UserDTO>> execute(Void input) {
-        List<User> users = userRepository.findAll();
+        List<User> users = (List<User>) userRepository.findAll();
         List<UserDTO> userDTOS = users.stream().map(UserDTO::new).toList();
 
         //no need for throwing exception here, just return an empty list
