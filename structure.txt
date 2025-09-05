@@ -1,0 +1,121 @@
+.
+├── mvnw
+├── mvnw.cmd
+├── pom.xml
+├── src
+│   ├── main
+│   │   ├── java
+│   │   │   └── com
+│   │   │       └── example
+│   │   │           └── taskmanager
+│   │   │               ├── Command.java
+│   │   │               ├── controller
+│   │   │               │   ├── AuthenticationController.java
+│   │   │               │   ├── TaskController.java
+│   │   │               │   └── UserController.java
+│   │   │               ├── dto
+│   │   │               │   ├── LoginUserDTO.java
+│   │   │               │   ├── RegisterUserDTO.java
+│   │   │               │   └── VerifyUserDTO.java
+│   │   │               ├── model
+│   │   │               │   ├── TaskDTO.java
+│   │   │               │   ├── Task.java
+│   │   │               │   ├── UpdateTaskCommand.java
+│   │   │               │   ├── UpdateUserCommand.java
+│   │   │               │   ├── UserDTO.java
+│   │   │               │   └── User.java
+│   │   │               ├── Query.java
+│   │   │               ├── repository
+│   │   │               │   ├── TaskRepository.java
+│   │   │               │   └── UserRepository.java
+│   │   │               ├── response
+│   │   │               │   └── LoginResponse.java
+│   │   │               ├── security
+│   │   │               │   ├── ApplicationConfig.java
+│   │   │               │   ├── EmailConfiguration.java
+│   │   │               │   ├── JwtAuthenticationFilter.java
+│   │   │               │   └── SecurityConfiguration.java
+│   │   │               ├── services
+│   │   │               │   ├── AuthenticationService.java
+│   │   │               │   ├── EmailService.java
+│   │   │               │   ├── JwtService.java
+│   │   │               │   ├── task
+│   │   │               │   │   ├── CreateTaskService.java
+│   │   │               │   │   ├── DeleteTaskService.java
+│   │   │               │   │   ├── GetTaskService.java
+│   │   │               │   │   ├── GetTasksService.java
+│   │   │               │   │   └── UpdateTaskService.java
+│   │   │               │   └── user
+│   │   │               │       ├── CreateUserService.java
+│   │   │               │       ├── DeleteUserService.java
+│   │   │               │       ├── GetUserService.java
+│   │   │               │       ├── GetUsersService.java
+│   │   │               │       ├── UpdateUserService.java
+│   │   │               │       └── UserService.java
+│   │   │               └── TaskManagerApplication.java
+│   │   └── resources
+│   │       ├── application.properties
+│   │       └── data.sql
+│   └── test
+│       └── java
+│           └── com
+│               └── example
+│                   └── demo
+│                       └── TaskManagerApplicationTests.java
+├── structure.txt
+└── target
+    ├── classes
+    │   ├── application.properties
+    │   ├── com
+    │   │   └── example
+    │   │       └── taskmanager
+    │   │           ├── Command.class
+    │   │           ├── controller
+    │   │           │   ├── AuthenticationController.class
+    │   │           │   ├── TaskController.class
+    │   │           │   └── UserController.class
+    │   │           ├── dto
+    │   │           │   ├── LoginUserDTO.class
+    │   │           │   ├── RegisterUserDTO.class
+    │   │           │   └── VerifyUserDTO.class
+    │   │           ├── model
+    │   │           │   ├── Task.class
+    │   │           │   ├── TaskDTO.class
+    │   │           │   ├── UpdateTaskCommand.class
+    │   │           │   ├── UpdateUserCommand.class
+    │   │           │   ├── User.class
+    │   │           │   └── UserDTO.class
+    │   │           ├── Query.class
+    │   │           ├── repository
+    │   │           │   ├── TaskRepository.class
+    │   │           │   └── UserRepository.class
+    │   │           ├── response
+    │   │           │   └── LoginResponse.class
+    │   │           ├── security
+    │   │           │   ├── ApplicationConfig.class
+    │   │           │   ├── EmailConfiguration.class
+    │   │           │   ├── JwtAuthenticationFilter.class
+    │   │           │   └── SecurityConfiguration.class
+    │   │           ├── services
+    │   │           │   ├── AuthenticationService.class
+    │   │           │   ├── EmailService.class
+    │   │           │   ├── JwtService.class
+    │   │           │   ├── task
+    │   │           │   │   ├── CreateTaskService.class
+    │   │           │   │   ├── DeleteTaskService.class
+    │   │           │   │   ├── GetTaskService.class
+    │   │           │   │   ├── GetTasksService.class
+    │   │           │   │   └── UpdateTaskService.class
+    │   │           │   └── user
+    │   │           │       ├── CreateUserService.class
+    │   │           │       ├── DeleteUserService.class
+    │   │           │       ├── GetUserService.class
+    │   │           │       ├── GetUsersService.class
+    │   │           │       ├── UpdateUserService.class
+    │   │           │       └── UserService.class
+    │   │           └── TaskManagerApplication.class
+    │   └── data.sql
+    └── generated-sources
+        └── annotations
+
+37 directories, 81 files
