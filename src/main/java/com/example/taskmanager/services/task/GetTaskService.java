@@ -27,7 +27,6 @@ public class GetTaskService implements Query<Integer, TaskDTO> {
             return ResponseEntity.ok(new TaskDTO(taskOptional.get()));
         }
 
-        // throw an exception in the future
         throw new IllegalArgumentException("Task not found");
 
     }

@@ -24,7 +24,6 @@ public class GetUsersService implements Query<Void, List<UserDTO>> {
         List<User> users = (List<User>) userRepository.findAll();
         List<UserDTO> userDTOS = users.stream().map(UserDTO::new).toList();
 
-        //no need for throwing exception here, just return an empty list
         return ResponseEntity.status(HttpStatus.OK).body(userDTOS);
     }
 }
