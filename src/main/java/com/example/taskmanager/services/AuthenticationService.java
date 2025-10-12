@@ -3,6 +3,7 @@ package com.example.taskmanager.services;
 import com.example.taskmanager.dto.LoginUserDTO;
 import com.example.taskmanager.dto.RegisterUserDTO;
 import com.example.taskmanager.dto.VerifyUserDTO;
+import com.example.taskmanager.exceptions.AccountAlreadyVerifiedException;
 import com.example.taskmanager.exceptions.EmailAlreadyExistsException;
 import com.example.taskmanager.model.User;
 import com.example.taskmanager.repository.UserRepository;
@@ -91,7 +92,7 @@ public class AuthenticationService {
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
             if (user.isEnabled()) {
-                throw new RuntimeException("Account is already verified");
+                throw new AccountAlreadyVerifiedException();
             }
             user.setVerificationCode(generateVerificationCode());
             user.setVerificationExpiry(LocalDateTime.now().plusHours(1));
