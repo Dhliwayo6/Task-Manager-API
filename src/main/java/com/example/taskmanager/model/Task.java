@@ -1,5 +1,6 @@
 package com.example.taskmanager.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -22,8 +23,11 @@ public class Task {
     @Column(name = "comments", nullable = true)
     private String comments;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)  // ← Change to EAGER
     @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnoreProperties({"password", "verificationCode", "verificationExpiry",
+            "authorities", "accountNonExpired", "accountNonLocked",
+            "credentialsNonExpired", "enabled"})
     private User user;
 
     public Task() {

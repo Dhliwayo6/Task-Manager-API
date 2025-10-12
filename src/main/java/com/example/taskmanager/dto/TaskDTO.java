@@ -12,14 +12,14 @@ public class TaskDTO {
     private String task;
     private LocalDate dateCreated;
     private String comments;
-    private User user;
+    private Integer userId;
 
     public TaskDTO(Task task) {
         this.id = task.getId();
         this.task = task.getTask();
         this.dateCreated = task.getDateCreated();
         this.comments = task.getComments();
-        this.user = task.getUser();
+        this.userId = task.getUser().getId();
     }
 
     public Integer getId() {
@@ -54,23 +54,23 @@ public class TaskDTO {
         this.comments = comments;
     }
 
-    public User getUser() {
-        return user;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         TaskDTO taskDTO = (TaskDTO) o;
-        return Objects.equals(id, taskDTO.id) && Objects.equals(task, taskDTO.task) && Objects.equals(dateCreated, taskDTO.dateCreated) && Objects.equals(comments, taskDTO.comments) && Objects.equals(user, taskDTO.user);
+        return Objects.equals(id, taskDTO.id) && Objects.equals(task, taskDTO.task) && Objects.equals(dateCreated, taskDTO.dateCreated) && Objects.equals(comments, taskDTO.comments) && Objects.equals(userId, taskDTO.userId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, task, dateCreated, comments, user);
+        return Objects.hash(id, task, dateCreated, comments, userId);
     }
 }
