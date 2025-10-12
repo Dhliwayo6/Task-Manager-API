@@ -10,6 +10,20 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
+    @ExceptionHandler(TaskNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseBody
+    public ErrorResponse handleTaskNotFoundException(TaskNotFoundException exception) {
+        return new ErrorResponse(exception.getMessage());
+    }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseBody
+    public ErrorResponse handleUserNotFoundException(UserNotFoundException exception) {
+        return new ErrorResponse(exception.getMessage());
+    }
+
     @ExceptionHandler(AccountAlreadyVerifiedException.class)
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
