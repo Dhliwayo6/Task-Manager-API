@@ -5,6 +5,7 @@ import com.example.taskmanager.dto.RegisterUserDTO;
 import com.example.taskmanager.dto.VerifyUserDTO;
 import com.example.taskmanager.exceptions.AccountAlreadyVerifiedException;
 import com.example.taskmanager.exceptions.EmailAlreadyExistsException;
+import com.example.taskmanager.exceptions.UserNotFoundException;
 import com.example.taskmanager.model.User;
 import com.example.taskmanager.repository.UserRepository;
 import jakarta.mail.MessagingException;
@@ -99,7 +100,7 @@ public class AuthenticationService {
             sendVerificationEmail(user);
             userRepository.save(user);
         } else {
-            throw new RuntimeException("User not found");
+            throw new UserNotFoundException();
         }
     }
 
