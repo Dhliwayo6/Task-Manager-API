@@ -37,4 +37,11 @@ public class GlobalExceptionHandler {
     public ErrorResponse handleInvalidTokenException(InvalidTokenException exception) {
         return new ErrorResponse(exception.getMessage());
     }
+
+    @ExceptionHandler(VerificationTokenExpiredException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    @ResponseBody
+    public ErrorResponse handleVerificationTokenExpiredException(VerificationTokenExpiredException exception) {
+        return new ErrorResponse(exception.getMessage());
+    }
 }
