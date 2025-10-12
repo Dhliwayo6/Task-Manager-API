@@ -3,6 +3,7 @@ package com.example.taskmanager.services;
 import com.example.taskmanager.dto.LoginUserDTO;
 import com.example.taskmanager.dto.RegisterUserDTO;
 import com.example.taskmanager.dto.VerifyUserDTO;
+import com.example.taskmanager.exceptions.EmailAlreadyExistsException;
 import com.example.taskmanager.model.User;
 import com.example.taskmanager.repository.UserRepository;
 import jakarta.mail.MessagingException;
@@ -35,6 +36,11 @@ public class AuthenticationService {
     }
 
     public User signup(RegisterUserDTO input) {
+        Optional<User> existingUser = userRepository.findByEmail(input.getEmail());
+        if(existingUser.isPresent()) {
+            throw new EmailAlreadyExistsException();
+        }
+
         User user = new User(input.getUsername(), input.getEmail(), passwordEncoder.encode(input.getPassword()));
         user.setVerificationCode(generateVerificationCode());
         user.setVerificationExpiry(LocalDateTime.now().plusMinutes(15));
