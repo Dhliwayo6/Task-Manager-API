@@ -2,7 +2,7 @@ package com.example.taskmanager.services.task;
 
 import com.example.taskmanager.Command;
 import com.example.taskmanager.model.Task;
-import com.example.taskmanager.model.TaskDTO;
+import com.example.taskmanager.dto.TaskDTO;
 import com.example.taskmanager.repository.TaskRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

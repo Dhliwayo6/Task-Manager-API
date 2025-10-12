@@ -1,5 +1,6 @@
 package com.example.taskmanager.model;
 
+import com.example.taskmanager.enums.Role;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,13 +24,15 @@ public class User implements UserDetails {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
     @Column(name = "verification_code")
     private String verificationCode;
     @Column(name = "verification_code_expiry")
     private LocalDateTime verificationExpiry;
     private boolean enabled;
 
-    // For create unverified user
     public User(String username, String email, String password) {
         this.username = username;
         this.email = email;

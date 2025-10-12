@@ -1,4 +1,6 @@
-package com.example.taskmanager.model;
+package com.example.taskmanager.dto;
+
+import com.example.taskmanager.model.User;
 
 import java.util.Objects;
 

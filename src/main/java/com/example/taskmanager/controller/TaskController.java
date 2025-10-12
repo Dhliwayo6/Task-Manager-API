@@ -1,7 +1,7 @@
 package com.example.taskmanager.controller;
 
 import com.example.taskmanager.model.Task;
-import com.example.taskmanager.model.TaskDTO;
+import com.example.taskmanager.dto.TaskDTO;
 import com.example.taskmanager.model.UpdateTaskCommand;
 import com.example.taskmanager.services.task.*;
 import org.springframework.http.ResponseEntity;
