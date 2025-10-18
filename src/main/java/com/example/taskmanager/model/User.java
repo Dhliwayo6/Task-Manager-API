@@ -50,8 +50,9 @@ public class User implements UserDetails {
         this.id = id;
     }
 
+    @Override
     public String getUsername() {
-        return username;
+        return this.email;
     }
 
     public void setUsername(String username) {
