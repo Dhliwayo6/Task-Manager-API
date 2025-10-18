@@ -1,5 +1,6 @@
 package com.example.taskmanager.model;
 
+import com.example.taskmanager.enums.Priority;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
@@ -20,6 +21,12 @@ public class Task {
     @Column(name = "date_created", nullable = false)
     private LocalDate dateCreated;
 
+    @Column(name = "complete")
+    private Boolean complete;
+
+    @Column(name = "priority")
+    private Priority priority;
+
     @Column(name = "comments", nullable = true)
     private String comments;
 
@@ -34,20 +41,27 @@ public class Task {
         this.dateCreated = LocalDate.now();
     }
 
-    public Task(Integer id, User user, String task, String comments) {
+    public Task(Integer id,
+                String task,
+                LocalDate dateCreated,
+                Boolean complete,
+                Priority priority,
+                String comments, User user) {
         this.id = id;
-        this.user = user;
         this.task = task;
-        this.dateCreated = LocalDate.now();
+        this.dateCreated = dateCreated;
+        this.complete = complete;
+        this.priority = priority;
         this.comments = comments;
+        this.user = user;
     }
 
-    public Task(User user, String task, String comments) {
-        this.user = user;
-        this.dateCreated = LocalDate.now();
-        this.task = task;
-        this.comments = comments;
-    }
+//    public Task(User user, String task, String comments) {
+//        this.user = user;
+//        this.dateCreated = LocalDate.now();
+//        this.task = task;
+//        this.comments = comments;
+//    }
 
     public Integer getId() {
         return id;
@@ -79,6 +93,22 @@ public class Task {
 
     public void setTask(String task) {
         this.task = task;
+    }
+
+    public Boolean getComplete() {
+        return complete;
+    }
+
+    public void setComplete(Boolean complete) {
+        this.complete = complete;
+    }
+
+    public Priority getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Priority priority) {
+        this.priority = priority;
     }
 
     public LocalDate getDateCreated() {
