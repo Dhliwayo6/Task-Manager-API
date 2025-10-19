@@ -3,9 +3,7 @@ package com.example.taskmanager.services;
 import com.example.taskmanager.dto.LoginUserDTO;
 import com.example.taskmanager.dto.RegisterUserDTO;
 import com.example.taskmanager.dto.VerifyUserDTO;
-import com.example.taskmanager.exceptions.AccountAlreadyVerifiedException;
-import com.example.taskmanager.exceptions.EmailAlreadyExistsException;
-import com.example.taskmanager.exceptions.UserNotFoundException;
+import com.example.taskmanager.exceptions.*;
 import com.example.taskmanager.model.User;
 import com.example.taskmanager.repository.UserRepository;
 import jakarta.mail.MessagingException;
@@ -56,7 +54,7 @@ public class AuthenticationService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         if (!user.isEnabled()) {
-            throw new RuntimeException("Account not verified. Please verify your account.");
+           throw new AccountNotVerifiedException();
         }
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -73,7 +71,7 @@ public class AuthenticationService {
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
             if (user.getVerificationExpiry().isBefore(LocalDateTime.now())) {
-                throw new RuntimeException("Verification code has expired");
+                throw new VerificationTokenExpiredException();
             }
             if (user.getVerificationCode().equals(input.getVerificationCode())) {
                 user.setEnabled(true);
@@ -81,10 +79,10 @@ public class AuthenticationService {
                 user.setVerificationExpiry(null);
                 userRepository.save(user);
             } else {
-                throw new RuntimeException("Invalid verification code");
+                throw new InvalidTokenException();
             }
         } else {
-            throw new RuntimeException("User not found");
+            throw new UserNotFoundException();
         }
     }
 
