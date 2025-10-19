@@ -40,19 +40,10 @@ public class TaskController {
         return getTasksService.execute(null);
     }
 
-    //new get mapping to find by id
-
     @GetMapping("/task/{id}")
     public ResponseEntity<TaskDTO> getProductById(@PathVariable Integer id) {
         return getTaskService.execute(id);
     }
-
-    //Search functionality request
-
-//    @GetMapping("/task/search")
-//    public ResponseEntity<List<TaskDTO>> searchTaskByName(@RequestParam String name) {
-//        return searchTaskService.execute(name);
-//    }
 
     @PutMapping("/task/{id}")
     public ResponseEntity<TaskDTO> updateProduct(@PathVariable Integer id, @RequestBody Task task){

@@ -1,6 +1,7 @@
 package com.example.taskmanager.services.task;
 
 import com.example.taskmanager.Command;
+import com.example.taskmanager.exceptions.TaskNotFoundException;
 import com.example.taskmanager.model.Task;
 import com.example.taskmanager.dto.TaskDTO;
 import com.example.taskmanager.model.UpdateTaskCommand;
@@ -26,13 +27,11 @@ public class UpdateTaskService implements Command<UpdateTaskCommand, TaskDTO> {
             Task task = command.getTask();
             task.setId(command.getId());
 
-//            ProductValidator.execute(product);
             taskRepository.save(task);
             return ResponseEntity.ok(new TaskDTO(task));
         }
 
-//        throw new TaskNotFoundException();
+        throw new TaskNotFoundException();
 
-        throw new IllegalArgumentException("Task not found");
     }
 }
