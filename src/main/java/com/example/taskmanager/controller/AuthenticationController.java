@@ -7,8 +7,12 @@ import com.example.taskmanager.model.User;
 import com.example.taskmanager.response.LoginResponse;
 import com.example.taskmanager.services.AuthenticationService;
 import com.example.taskmanager.services.JwtService;
+import jakarta.mail.MessagingException;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
 
 @RequestMapping("/auth")
 @RestController
@@ -22,13 +26,13 @@ public class AuthenticationController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<User> signUp(@RequestBody RegisterUserDTO registerUserDTO) {
+    public ResponseEntity<User> signUp(@Valid @RequestBody RegisterUserDTO registerUserDTO) {
         User registeredUser = authenticationService.signup(registerUserDTO);
         return ResponseEntity.ok(registeredUser);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponse> authenticate(@RequestBody LoginUserDTO loginUserDTO){
+    public ResponseEntity<LoginResponse> authenticate(@Valid @RequestBody LoginUserDTO loginUserDTO) throws MessagingException, IOException {
         User authenticatedUser = authenticationService.authenticate(loginUserDTO);
         String jwtToken = jwtService.generateToken(authenticatedUser);
         LoginResponse loginResponse = new LoginResponse(jwtToken, jwtService.getJwtExpiration());
